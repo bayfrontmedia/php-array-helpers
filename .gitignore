@@ -1,0 +1,12 @@
+# OS
+[Tt]humbs.db
+*.DS_Store
+
+# PHPStorm
+*.idea
+
+# Composer
+vendor/*
+
+# Local tests
+tests/*
