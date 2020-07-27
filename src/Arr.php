@@ -5,7 +5,7 @@
  * Heavily inspired by: https://laravel.com/docs/7.x/helpers
  * See: https://github.com/laravel/framework/blob/5.8/src/Illuminate/Support/Arr.php
  *
- * @version     1.1.0
+ * @version     1.0.0
  * @link        https://github.com/bayfrontmedia/php-array-helpers
  * @license     MIT https://opensource.org/licenses/MIT
  * @copyright   2020 Bayfront Media https://www.bayfrontmedia.com
