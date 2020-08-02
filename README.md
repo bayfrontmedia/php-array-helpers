@@ -18,7 +18,7 @@ John Robinson, [Bayfront Media](https://www.bayfrontmedia.com)
 
 ## Requirements
 
-* PHP > 7.1.0
+* PHP >= 7.1.0
 
 ## Installation
 
@@ -124,7 +124,7 @@ Set an array item to a given value using "dot" notation.
 
 **Returns:**
 
-- (array)
+- (void)
 
 **Example:**
 
@@ -138,7 +138,7 @@ $array = [
     ],
 ];
 
-$array = Arr::set($array, 'name.middle_name', 'Middle');
+Arr::set($array, 'name.middle_name', 'Middle');
 ```
 
 <hr />
@@ -220,7 +220,7 @@ Returns an array of values for a given key from an array using "dot" notation.
 
 - `$array` (array): Original array
 - `$value` (string): Value to return in "dot" notation
-- `$key = NULL` (string): Optionally how to key the returned array in "dot" notation
+- `$key = NULL` (string|null): Optionally how to key the returned array in "dot" notation
 
 **Returns:**
 

@@ -1,15 +1,9 @@
 <?php
 /**
- * Helper class to provide useful array functions
- *
- * Heavily inspired by: https://laravel.com/docs/7.x/helpers
- * See: https://github.com/laravel/framework/blob/5.8/src/Illuminate/Support/Arr.php
- *
- * @version     1.0.0
- * @link        https://github.com/bayfrontmedia/php-array-helpers
- * @license     MIT https://opensource.org/licenses/MIT
- * @copyright   2020 Bayfront Media https://www.bayfrontmedia.com
- * @author      John Robinson <john@bayfrontmedia.com>
+ * @package php-array-helpers
+ * @link https://github.com/bayfrontmedia/php-array-helpers
+ * @author John Robinson <john@bayfrontmedia.com>
+ * @copyright 2020 Bayfront Media
  */
 
 namespace Bayfront\ArrayHelpers;
@@ -86,10 +80,10 @@ class Arr
      * @param string $key (Key to set in "dot" notation)
      * @param mixed $value (Value of key)
      *
-     * @return array (Modified array)
+     * @return void
      */
 
-    public static function set(&$array, string $key, $value): array
+    public static function set(&$array, string $key, $value): void
     {
 
         $keys = explode('.', $key);
@@ -115,8 +109,6 @@ class Arr
         }
 
         $array[array_shift($keys)] = $value;
-
-        return $array;
 
     }
 
@@ -180,7 +172,7 @@ class Arr
      *
      * @param array $array (Original array)
      * @param string $value (Value to return in "dot" notation)
-     * @param string $key (Optionally how to key the returned array in "dot" notation)
+     * @param string|null $key (Optionally how to key the returned array in "dot" notation)
      *
      * @return array
      */

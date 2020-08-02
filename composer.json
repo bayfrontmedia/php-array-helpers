@@ -3,7 +3,7 @@
   "description": "Helper class to provide useful array functions.",
   "homepage": "https://github.com/bayfrontmedia/php-array-helpers",
   "license" : "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "library",
   "keywords": [
     "php",

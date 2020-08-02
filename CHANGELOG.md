@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [1.0.1] - 2020.08.02
+
+### Changed
+
+- Corrected return type for `set()` as `void`
+
 ## [1.0.0] - 2020.07.27
 
 ### Added
