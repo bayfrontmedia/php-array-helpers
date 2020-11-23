@@ -40,6 +40,7 @@ composer require bayfrontmedia/php-array-helpers
 - [missing](#missing)
 - [isMissing](#ismissing)
 - [multisort](#multisort)
+- [renameKeys](#renamekeys)
 - [query](#query)
 
 <hr />
@@ -446,6 +447,41 @@ $clients = [
 ];
 
 $sorted = Arr::multisort($clients, 'first_name');
+```
+
+<hr />
+
+### renameKeys
+
+**Description:**
+
+Rename array keys while preserving their order.
+
+**Parameters:**
+
+- `$array` (array): Original array
+- `$keys` (array): Key/value pairs to rename
+
+**Returns:**
+
+- (array)
+
+**Example:**
+
+```
+use Bayfront\ArrayHelpers\Arr;
+
+$user = [
+    'UserID' => 5,
+    'UserEmail' => 'name@example.com',
+    'UserGroup' => 'Administrator'
+];
+
+$renamed = Arr::renameKeys($user, [
+    'UserID' => 'id',
+    'UserEmail' => 'email',
+    'UserGroup' => 'group'
+]);
 ```
 
 <hr />

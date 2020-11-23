@@ -327,6 +327,38 @@ class Arr
     }
 
     /**
+     * Rename array keys while preserving their order.
+     *
+     * @param array $array (Original array)
+     * @param array $keys (Key/value pairs to rename)
+     *
+     * @return array
+     */
+
+    public static function renameKeys(array $array, array $keys): array
+    {
+
+        $new_array = [];
+
+        foreach ($array as $k => $v) {
+
+            if (array_key_exists($k, $keys)) {
+
+                $new_array[$keys[$k]] = $v;
+
+            } else {
+
+                $new_array[$k] = $v;
+
+            }
+
+        }
+
+        return $new_array;
+
+    }
+
+    /**
      * Convert array into a query string
      *
      * @param array $array (Original array)
