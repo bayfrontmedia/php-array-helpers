@@ -3,7 +3,7 @@
  * @package php-array-helpers
  * @link https://github.com/bayfrontmedia/php-array-helpers
  * @author John Robinson <john@bayfrontmedia.com>
- * @copyright 2020 Bayfront Media
+ * @copyright 2020-2021 Bayfront Media
  */
 
 namespace Bayfront\ArrayHelpers;
@@ -13,7 +13,7 @@ class Arr
 
     /**
      * Converts a multidimensional array to a single depth "dot" notation array,
-     * optionally prepending a string to each array key
+     * optionally prepending a string to each array key.
      *
      * The key values will never be an array, even if empty. Empty arrays will be dropped.
      *
@@ -51,7 +51,7 @@ class Arr
     }
 
     /**
-     * Converts array in "dot" notation to a standard multidimensional array
+     * Converts array in "dot" notation to a standard multidimensional array.
      *
      * @param array $array (Array in "dot" notation)
      *
@@ -74,7 +74,7 @@ class Arr
     }
 
     /**
-     * Set an array item to a given value using "dot" notation
+     * Set an array item to a given value using "dot" notation.
      *
      * @param array $array (Original array)
      * @param string $key (Key to set in "dot" notation)
@@ -113,7 +113,7 @@ class Arr
     }
 
     /**
-     * Checks if array key exists and not null using "dot" notation
+     * Checks if array key exists and not null using "dot" notation.
      *
      * @param array $array (Original array)
      * @param string $key (Key to check in "dot" notation)
@@ -127,7 +127,7 @@ class Arr
     }
 
     /**
-     * Get an item from an array using "dot" notation, returning an optional default value if not found
+     * Get an item from an array using "dot" notation, returning an optional default value if not found.
      *
      * @param array $array (Original array)
      * @param string $key (Key to return in "dot" notation)
@@ -168,7 +168,7 @@ class Arr
     }
 
     /**
-     * Returns an array of values for a given key from an array using "dot" notation
+     * Returns an array of values for a given key from an array using "dot" notation.
      *
      * @param array $array (Original array)
      * @param string $value (Value to return in "dot" notation)
@@ -203,7 +203,7 @@ class Arr
     }
 
     /**
-     * Remove a single key, or an array of keys from a given array using "dot" notation
+     * Remove a single key, or an array of keys from a given array using "dot" notation.
      *
      * @param array $array (Original array)
      * @param string|array $keys (Key(s) to forget in "dot" notation)
@@ -242,7 +242,7 @@ class Arr
     }
 
     /**
-     * Returns the original array except given key(s)
+     * Returns the original array except given key(s).
      *
      * @param array $array (Original array)
      * @param string|array $keys (Keys to remove)
@@ -256,7 +256,7 @@ class Arr
     }
 
     /**
-     * Returns only desired key(s) from an array
+     * Returns only desired key(s) from an array.
      *
      * @param array $array (Original array)
      * @param string|array $keys (Keys to return)
@@ -270,7 +270,7 @@ class Arr
     }
 
     /**
-     * Returns array of missing keys from the original array, or an empty array if none are missing
+     * Returns array of missing keys from the original array, or an empty array if none are missing.
      *
      * @param array $array (Original array)
      * @param string|array $keys (Keys to check)
@@ -298,7 +298,7 @@ class Arr
     }
 
     /**
-     * Sort a multidimensional array by a given key in ascending (optionally, descending) order
+     * Sort a multidimensional array by a given key in ascending (optionally, descending) order.
      *
      * @param array $array (Original array)
      * @param string $key (Key name to sort by)
@@ -359,7 +359,7 @@ class Arr
     }
 
     /**
-     * Convert array into a query string
+     * Convert array into a query string.
      *
      * @param array $array (Original array)
      *
@@ -369,6 +369,48 @@ class Arr
     public static function query(array $array): string
     {
         return http_build_query($array, NULL, '&', PHP_QUERY_RFC3986);
+    }
+
+    /**
+     * Return an array of values which exist in a given array.
+     *
+     * @param array $array
+     * @param array $values
+     *
+     * @return array
+     */
+
+    public static function getAnyValues(array $array, array $values): array
+    {
+        return array_intersect($values, Arr::dot($array));
+    }
+
+    /**
+     * Do any values exist in a given array.
+     *
+     * @param array $array
+     * @param array $values
+     *
+     * @return bool
+     */
+
+    public static function hasAnyValues(array $array, array $values): bool
+    {
+        return !empty(self::getAnyValues($array, $values));
+    }
+
+    /**
+     * Do all values exist in a given array.
+     *
+     * @param array $array
+     * @param array $values
+     *
+     * @return bool
+     */
+
+    public static function hasAllValues(array $array, array $values): bool
+    {
+        return count(array_intersect($values, Arr::dot($array))) == count($values);
     }
 
 }

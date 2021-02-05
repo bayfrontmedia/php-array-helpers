@@ -42,6 +42,9 @@ composer require bayfrontmedia/php-array-helpers
 - [multisort](#multisort)
 - [renameKeys](#renamekeys)
 - [query](#query)
+- [getAnyValues](#getanyvalues)
+- [hasAnyValues](#hasanyvalues)
+- [hasAllValues](#hasallvalues)
 
 <hr />
 
@@ -511,4 +514,107 @@ $array = [
 ];
 
 echo Arr::query($array);
+```
+
+<hr />
+
+### getAnyValues
+
+**Description:**
+
+Return an array of values which exist in a given array.
+
+**Parameters:**
+
+- `$array` (array)
+- `$values` (array)
+
+**Returns:**
+
+- (array)
+
+**Example:**
+
+```
+$array = [
+    'name' => [
+        'John',
+        'Dave'
+    ],
+];
+
+$existing_values = Arr::getAnyValues($array['name'], [
+    'John',
+    'Jane'
+]);
+```
+
+<hr />
+
+### hasAnyValues
+
+**Description:**
+
+Do any values exist in a given array.
+
+**Parameters:**
+
+- `$array` (array)
+- `$values` (array)
+
+**Returns:**
+
+- (bool)
+
+**Example:**
+
+```
+$array = [
+    'name' => [
+        'John',
+        'Dave'
+    ],
+];
+
+if (Arr::hasAnyValues($array['name'], [
+    'John',
+    'Jane'
+])) { 
+     // Do something
+}
+```
+
+<hr />
+
+### hasAllValues
+
+**Description:**
+
+Do all values exist in a given array.
+
+**Parameters:**
+
+- `$array` (array)
+- `$values` (array)
+
+**Returns:**
+
+- (bool)
+
+**Example:**
+
+```
+$array = [
+    'name' => [
+        'John',
+        'Dave'
+    ],
+];
+
+if (Arr::hasAllValues($array['name'], [
+    'John',
+    'Jane'
+])) { 
+     // Do something
+}
 ```
