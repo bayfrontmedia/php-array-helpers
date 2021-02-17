@@ -359,19 +359,19 @@ class Arr
     }
 
     /**
-     * Order an array based on an array of keys in dot notation.
+     * Order an array based on an array of keys.
      *
      * Keys from the $order array which do not exist in the original array will be ignored.
      *
      * @param array $array (Original array)
-     * @param array $order (Array of keys in dot notation in the order to be returned)
+     * @param array $order (Array of keys in the order to be returned)
      *
      * @return array
      */
 
     public static function order(array $array, array $order): array
     {
-        return self::undot(self::only(array_replace(array_flip($order), self::dot($array)), array_keys(self::dot($array))));
+        return self::only(array_replace(array_flip($order), $array), array_keys($array));
     }
 
     /**

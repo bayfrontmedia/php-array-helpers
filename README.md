@@ -512,33 +512,22 @@ Keys from the `$order` array which do not exist in the original array will be ig
 ```
 use Bayfront\ArrayHelpers\Arr;
 
-$person = [
-    'address' => [
-        'street' => '123 Main St.',
-        'state' => 'IL',
-        'zip' => '60007',
-        'city' => 'Chicago'
-    ],
-    'id' => 12345,
-    'active' => true,
-    'name' => [
-        'last' => 'Doe',
-        'first' => 'John'
-    ]
+$address = [
+    'street' => '123 Main St.',
+    'state' => 'IL',
+    'zip' => '60007',
+    'city' => 'Chicago'
 ];
 
 $order = [
-    'id',
-    'name.first',
-    'name.last',
-    'address.street',
-    'address.city',
-    'address.state',
-    'address.zip',
-    'active'
+    'street',
+    'city',
+    'state',
+    'zip',
+    'country'
 ];
 
-$person = Arr::order($person, $order);
+$address = Arr::order($address, $order);
 ```
 
 The above example will return the following array:
@@ -546,22 +535,10 @@ The above example will return the following array:
 ```
 Array
 (
-    [id] => 12345
-    [name] => Array
-        (
-            [first] => John
-            [last] => Doe
-        )
-
-    [address] => Array
-        (
-            [street] => 123 Main St.
-            [city] => Chicago
-            [state] => IL
-            [zip] => 60007
-        )
-
-    [active] => 1
+    [street] => 123 Main St.
+    [city] => Chicago
+    [state] => IL
+    [zip] => 60007
 )
 ```
 
