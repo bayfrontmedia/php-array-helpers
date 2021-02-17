@@ -41,6 +41,7 @@ composer require bayfrontmedia/php-array-helpers
 - [isMissing](#ismissing)
 - [multisort](#multisort)
 - [renameKeys](#renamekeys)
+- [order](#order)
 - [query](#query)
 - [getAnyValues](#getanyvalues)
 - [hasAnyValues](#hasanyvalues)
@@ -485,6 +486,83 @@ $renamed = Arr::renameKeys($user, [
     'UserEmail' => 'email',
     'UserGroup' => 'group'
 ]);
+```
+
+<hr />
+
+### order
+
+**Description:**
+
+Order an array based on an array of keys in dot notation.
+
+Keys from the `$order` array which do not exist in the original array will be ignored.
+
+**Parameters:**
+
+- `$array` (array): Original array
+- `$order` (array): Array of keys in dot notation in the order to be returned
+
+**Returns:**
+
+- (array)
+
+**Example:**
+
+```
+use Bayfront\ArrayHelpers\Arr;
+
+$person = [
+    'address' => [
+        'street' => '123 Main St.',
+        'state' => 'IL',
+        'zip' => '60007',
+        'city' => 'Chicago'
+    ],
+    'id' => 12345,
+    'active' => true,
+    'name' => [
+        'last' => 'Doe',
+        'first' => 'John'
+    ]
+];
+
+$order = [
+    'id',
+    'name.first',
+    'name.last',
+    'address.street',
+    'address.city',
+    'address.state',
+    'address.zip',
+    'active'
+];
+
+$person = Arr::order($person, $order);
+```
+
+The above example will return the following array:
+
+```
+Array
+(
+    [id] => 12345
+    [name] => Array
+        (
+            [first] => John
+            [last] => Doe
+        )
+
+    [address] => Array
+        (
+            [street] => 123 Main St.
+            [city] => Chicago
+            [state] => IL
+            [zip] => 60007
+        )
+
+    [active] => 1
+)
 ```
 
 <hr />
