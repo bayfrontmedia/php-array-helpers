@@ -494,14 +494,14 @@ $renamed = Arr::renameKeys($user, [
 
 **Description:**
 
-Order an array based on an array of keys in dot notation.
+Order an array based on an array of keys.
 
 Keys from the `$order` array which do not exist in the original array will be ignored.
 
 **Parameters:**
 
 - `$array` (array): Original array
-- `$order` (array): Array of keys in dot notation in the order to be returned
+- `$order` (array): Array of keys in the order to be returned
 
 **Returns:**
 
