@@ -1,12 +1,24 @@
+# Miscellaneous local files
+
+_local/*
+*.env
+*.log
+
+# Dependencies
+
+node_modules/
+/vendor/
+composer.lock
+
+# IDE's
+
+.idea
+.vscode
+
 # OS
-[Tt]humbs.db
-*.DS_Store
 
-# PHPStorm
-*.idea
-
-# Composer
-vendor/*
-
-# Local tests
-tests/*
+.DS_Store
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
