@@ -83,7 +83,7 @@ class Arr
      * @return void
      */
 
-    public static function set(&$array, string $key, $value): void
+    public static function set(array &$array, string $key, $value): void
     {
 
         $keys = explode('.', $key);
@@ -314,11 +314,11 @@ class Arr
 
         if (false === $descending) {
 
-            array_multisort($columns, SORT_ASC, $array);
+            array_multisort($columns, SORT_ASC, $array, SORT_NUMERIC);
 
         } else {
 
-            array_multisort($columns, SORT_DESC, $array);
+            array_multisort($columns, SORT_DESC, $array, SORT_NUMERIC);
 
         }
 

@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [1.3.1] - 2021.03.13
+
+### Fixed
+
+- Fixed bug in `multisort` method to preserve array order by adding the `SORT_NUMERIC` flag.
+
 ## [1.3.0] - 2021.02.17
 
 ### Added
