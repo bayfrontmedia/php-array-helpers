@@ -15,16 +15,16 @@
     {
       "name": "John Robinson",
       "email": "john@bayfrontmedia.com",
-      "homepage": "https://www.bayfrontmedia.com",
-      "role": "Developer"
+      "homepage": "https://www.bayfrontmedia.com"
     }
   ],
-  "funding": [
-    {
-      "type": "patreon",
-      "url": "https://www.patreon.com/bayfrontmedia"
-    }
-  ],
+  "support": {
+    "issues": "https://github.com/bayfrontmedia/php-array-helpers/issues"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist"
+  },
   "require": {
     "php": ">=7.1.0"
   },

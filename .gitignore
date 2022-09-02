@@ -1,13 +1,21 @@
-# Miscellaneous local files
+# Project-specific
 
-_local/*
-*.env
 *.log
+
+# Local files
+
+_local
+
+# Dotenv
+
+.env
+.env.*
+!.env.example
 
 # Dependencies
 
-node_modules/
-/vendor/
+/node_modules
+/vendor
 composer.lock
 
 # IDE's
