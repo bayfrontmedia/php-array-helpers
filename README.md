@@ -21,7 +21,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Requirements
 
-* PHP >= 7.1.0
+* PHP `^8.0`
 
 ## Installation
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * @package php-array-helpers
- * @link https://github.com/bayfrontmedia/php-array-helpers
- * @author John Robinson <john@bayfrontmedia.com>
- * @copyright 2020-2021 Bayfront Media
- */
 
 namespace Bayfront\ArrayHelpers;
 
@@ -83,7 +77,7 @@ class Arr
      * @return void
      */
 
-    public static function set(array &$array, string $key, $value): void
+    public static function set(array &$array, string $key, mixed $value): void
     {
 
         $keys = explode('.', $key);
@@ -131,19 +125,13 @@ class Arr
      *
      * @param array $array (Original array)
      * @param string $key (Key to return in "dot" notation)
-     * @param mixed $default (Default value to return)
+     * @param mixed|null $default (Default value to return)
      *
      * @return mixed
      */
 
-    public static function get(array $array, string $key, $default = NULL)
+    public static function get(array $array, string $key, mixed $default = NULL): mixed
     {
-
-        if (is_null($key)) {
-
-            return $array;
-
-        }
 
         if (isset($array[$key])) {
 
@@ -206,12 +194,12 @@ class Arr
      * Remove a single key, or an array of keys from a given array using "dot" notation.
      *
      * @param array $array (Original array)
-     * @param string|array $keys (Key(s) to forget in "dot" notation)
+     * @param array|string $keys (Key(s) to forget in "dot" notation)
      *
      * @return void
      */
 
-    public static function forget(array &$array, $keys): void
+    public static function forget(array &$array, array|string $keys): void
     {
 
         $original =& $array;
@@ -245,12 +233,12 @@ class Arr
      * Returns the original array except given key(s).
      *
      * @param array $array (Original array)
-     * @param string|array $keys (Keys to remove)
+     * @param array|string $keys (Keys to remove)
      *
      * @return array
      */
 
-    public static function except(array $array, $keys): array
+    public static function except(array $array, array|string $keys): array
     {
         return array_diff_key($array, array_flip((array)$keys));
     }
@@ -259,12 +247,12 @@ class Arr
      * Returns only desired key(s) from an array.
      *
      * @param array $array (Original array)
-     * @param string|array $keys (Keys to return)
+     * @param array|string $keys (Keys to return)
      *
      * @return array
      */
 
-    public static function only(array $array, $keys): array
+    public static function only(array $array, array|string $keys): array
     {
         return array_intersect_key($array, array_flip((array)$keys));
     }
@@ -273,12 +261,12 @@ class Arr
      * Returns array of missing keys from the original array, or an empty array if none are missing.
      *
      * @param array $array (Original array)
-     * @param string|array $keys (Keys to check)
+     * @param array|string $keys (Keys to check)
      *
      * @return array
      */
 
-    public static function missing(array $array, $keys): array
+    public static function missing(array $array, array|string $keys): array
     {
         return array_values(array_flip(array_diff_key(array_flip((array)$keys), $array)));
     }
@@ -287,14 +275,14 @@ class Arr
      * Checks if keys are missing from the original array
      *
      * @param array $array (Original array)
-     * @param string|array $keys (Keys to check)
+     * @param array|string $keys (Keys to check)
      *
      * @return bool
      */
 
-    public static function isMissing(array $array, $keys): bool
+    public static function isMissing(array $array, array|string $keys): bool
     {
-        return (self::missing($array, $keys)) ? true : false;
+        return (bool)self::missing($array, $keys);
     }
 
     /**
