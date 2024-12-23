@@ -1,0 +1,34 @@
+name: 🛠️ Feature request
+description: Request a new feature
+title: "[FEATURE]: "
+labels: ["Type: Feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        To request a new feature, complete the form below.
+  - type: input
+    attributes:
+      label: Current project version
+      description: Latest release of this project to-date
+      placeholder: vX.X.X
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: Description of the proposed feature
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Scenario/use-case
+      description: Explain how/when the feature would be helpful
+  - type: textarea
+    attributes:
+      label: Possible solution
+      description: Possible solution to implement this feature
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Additional information/details

@@ -1,0 +1,22 @@
+name: ❓ Question
+description: Ask a question
+title: "[QUESTION]: "
+labels: ["Type: Question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        To ask a question, complete the form below.
+  - type: input
+    attributes:
+      label: Current project version
+      description: Latest release of this project to-date
+      placeholder: vX.X.X
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: Description of the question
+    validations:
+      required: true

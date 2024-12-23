@@ -1,0 +1,20 @@
+name: 📄 Other
+description: All other issues
+title: "[OTHER]: "
+labels: ["Type: Other"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        To create a new issue, complete the form below.
+  - type: input
+    attributes:
+      label: Project version
+      description: Version of this project for which this issue applies (if applicable)
+      placeholder: vX.X.X
+  - type: textarea
+    attributes:
+      label: Description
+      description: Issue details
+    validations:
+      required: true

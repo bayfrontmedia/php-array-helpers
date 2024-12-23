@@ -165,7 +165,7 @@ class Arr
      * @return array
      */
 
-    public static function pluck(array $array, string $value, string $key = NULL): array
+    public static function pluck(array $array, string $value, ?string $key = NULL): array
     {
         $results = [];
 

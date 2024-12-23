@@ -1,0 +1,42 @@
+name: ⚠️️ Bug report
+description: Report a bug
+title: "[BUG]: "
+labels: ["Type: Bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        To report a bug, complete the form below.
+  - type: input
+    attributes:
+      label: Project version
+      description: Version of this project in which the bug exists
+      placeholder: vX.X.X
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: Detailed description of the bug
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A summary of what you expected, should this issue not have arisen
+  - type: textarea
+    attributes:
+      label: Possible solution
+      description: Possible solution/fix to this issue
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Can provide links to a live example, code snippets, screenshots, or simple steps to reproduce this bug
+  - type: textarea
+    attributes:
+      label: Environment
+      description: Details of the environment which experienced this bug
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Additional information/details
