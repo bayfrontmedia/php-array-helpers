@@ -43,12 +43,14 @@ composer require bayfrontmedia/php-array-helpers
 - [missing](#missing)
 - [isMissing](#ismissing)
 - [multisort](#multisort)
+- [numericMultisort](#numericmultisort)
 - [renameKeys](#renamekeys)
 - [order](#order)
 - [query](#query)
 - [getAnyValues](#getanyvalues)
 - [hasAnyValues](#hasanyvalues)
 - [hasAllValues](#hasallvalues)
+- [ensureHas](#ensurehas)
 
 <hr />
 
@@ -72,8 +74,6 @@ The key values will never be an array, even if empty. Empty arrays will be dropp
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'name' => [
         'first_name' => 'John',
@@ -106,8 +106,6 @@ Converts array in "dot" notation to a standard multidimensional array.
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'name.first_name' => 'John',
     'name.last_name' => 'Doe'
@@ -137,8 +135,6 @@ Set an array item to a given value using "dot" notation.
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'name' => [
         'first_name' => 'John',
@@ -169,8 +165,6 @@ Checks if array key exists and not null using "dot" notation.
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'name' => [
         'first_name' => 'John',
@@ -204,8 +198,6 @@ Get an item from an array using "dot" notation, returning an optional default va
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'name' => [
         'first_name' => 'John',
@@ -237,8 +229,6 @@ Returns an array of values for a given key from an array using "dot" notation.
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     [
         'user_id' => 110,
@@ -275,8 +265,6 @@ Remove a single key, or an array of keys from a given array using "dot" notation
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'name' => [
         'first_name' => 'John',
@@ -307,8 +295,6 @@ Returns the original array except given key(s).
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'user_id' => 110,
     'username' => 'John',
@@ -338,8 +324,6 @@ Returns only desired key(s) from an array.
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'user_id' => 110,
     'username' => 'John',
@@ -369,8 +353,6 @@ Returns array of missing keys from the original array, or an empty array if none
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'user_id' => 110,
     'username' => 'John',
@@ -403,8 +385,6 @@ Checks if keys are missing from the original array.
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'user_id' => 110,
     'username' => 'John',
@@ -440,8 +420,6 @@ Sort a multidimensional array by a given key in ascending (optionally, descendin
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $clients = [
     [
         'first_name' => 'John',
@@ -454,6 +432,51 @@ $clients = [
 ];
 
 $sorted = Arr::multisort($clients, 'first_name');
+```
+
+<hr />
+
+### numericMultisort
+
+**Description:**
+
+Sort a numerically indexed array of multidimensional arrays by a given key in ascending (optionally, descending) order.
+
+**Parameters:**
+
+- `$array` (array): Numerically indexed array of multidimensional arrays
+- `$key` (string): Key name to sort by in dot notation
+- `$descending = false` (bool): Sort descending
+
+**Returns:**
+
+- (array)
+
+**Example:**
+
+```
+$contacts = [
+    [
+        'id' => 1,
+        'contact' => [
+            'name' => 'James'
+        ]
+    ],
+    [
+        'id' => 2,
+        'contact' => [
+            'name' => 'Bob'
+        ]
+    ],
+    [
+        'id' => 3,
+        'contact' => [
+            'name' => 'Carl'
+        ]
+    ]
+];
+
+$sorted = Arr::numericMultisort($contacts, 'contact.name');
 ```
 
 <hr />
@@ -476,8 +499,6 @@ Rename array keys while preserving their order.
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $user = [
     'UserID' => 5,
     'UserEmail' => 'name@example.com',
@@ -513,8 +534,6 @@ Keys from the `$order` array which do not exist in the original array will be ig
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $address = [
     'street' => '123 Main St.',
     'state' => 'IL',
@@ -564,8 +583,6 @@ Convert array into a query string.
 **Example:**
 
 ```
-use Bayfront\ArrayHelpers\Arr;
-
 $array = [
     'first_name' => 'Jane',
     'last_name' => 'Doe'
@@ -675,4 +692,56 @@ if (Arr::hasAllValues($array['name'], [
 ])) { 
      // Do something
 }
+```
+
+<hr />
+
+### ensureHas
+
+**Description:**
+
+Ensure a numerically indexed array of arrays has a given item based on a unique key.
+
+**Parameters:**
+
+- `$array` (array)
+- `$item` (array): Item to exist
+- `$unique_key` (string): Unique array key
+
+**Returns:**
+
+- (bool)
+
+**Example:**
+
+```
+$contacts = [
+    [
+        'id' => 1,
+        'contact' => [
+            'name' => 'James'
+        ]
+    ],
+    [
+        'id' => 2,
+        'contact' => [
+            'name' => 'Bob'
+        ]
+    ],
+    [
+        'id' => 3,
+        'contact' => [
+            'name' => 'Carl'
+        ]
+    ]
+];
+
+$item = [
+    'id' => 2,
+    'contact' => [
+        'name' => 'Bob'
+    ]
+];
+
+$contacts = Arr::ensureHas($contacts, $item, 'id');
 ```

@@ -15,10 +15,8 @@ class Arr
      *
      * @param array $array (Original array)
      * @param string $prepend (String to prepend)
-     *
      * @return array
      */
-
     public static function dot(array $array, string $prepend = ''): array
     {
 
@@ -48,10 +46,8 @@ class Arr
      * Converts array in "dot" notation to a standard multidimensional array.
      *
      * @param array $array (Array in "dot" notation)
-     *
      * @return array
      */
-
     public static function undot(array $array): array
     {
 
@@ -73,10 +69,8 @@ class Arr
      * @param array $array (Original array)
      * @param string $key (Key to set in "dot" notation)
      * @param mixed $value (Value of key)
-     *
      * @return void
      */
-
     public static function set(array &$array, string $key, mixed $value): void
     {
 
@@ -111,10 +105,8 @@ class Arr
      *
      * @param array $array (Original array)
      * @param string $key (Key to check in "dot" notation)
-     *
      * @return bool
      */
-
     public static function has(array $array, string $key): bool
     {
         return NULL !== self::get($array, $key);
@@ -126,10 +118,8 @@ class Arr
      * @param array $array (Original array)
      * @param string $key (Key to return in "dot" notation)
      * @param mixed|null $default (Default value to return)
-     *
      * @return mixed
      */
-
     public static function get(array $array, string $key, mixed $default = NULL): mixed
     {
 
@@ -161,10 +151,8 @@ class Arr
      * @param array $array (Original array)
      * @param string $value (Value to return in "dot" notation)
      * @param string|null $key (Optionally how to key the returned array in "dot" notation)
-     *
      * @return array
      */
-
     public static function pluck(array $array, string $value, ?string $key = NULL): array
     {
         $results = [];
@@ -195,10 +183,8 @@ class Arr
      *
      * @param array $array (Original array)
      * @param array|string $keys (Key(s) to forget in "dot" notation)
-     *
      * @return void
      */
-
     public static function forget(array &$array, array|string $keys): void
     {
 
@@ -234,10 +220,8 @@ class Arr
      *
      * @param array $array (Original array)
      * @param array|string $keys (Keys to remove)
-     *
      * @return array
      */
-
     public static function except(array $array, array|string $keys): array
     {
         return array_diff_key($array, array_flip((array)$keys));
@@ -248,10 +232,8 @@ class Arr
      *
      * @param array $array (Original array)
      * @param array|string $keys (Keys to return)
-     *
      * @return array
      */
-
     public static function only(array $array, array|string $keys): array
     {
         return array_intersect_key($array, array_flip((array)$keys));
@@ -262,10 +244,8 @@ class Arr
      *
      * @param array $array (Original array)
      * @param array|string $keys (Keys to check)
-     *
      * @return array
      */
-
     public static function missing(array $array, array|string $keys): array
     {
         return array_values(array_flip(array_diff_key(array_flip((array)$keys), $array)));
@@ -279,7 +259,6 @@ class Arr
      *
      * @return bool
      */
-
     public static function isMissing(array $array, array|string $keys): bool
     {
         return (bool)self::missing($array, $keys);
@@ -291,10 +270,8 @@ class Arr
      * @param array $array (Original array)
      * @param string $key (Key name to sort by)
      * @param bool $descending (Sort descending)
-     *
      * @return array
      */
-
     public static function multisort(array $array, string $key, bool $descending = false): array
     {
 
@@ -315,14 +292,52 @@ class Arr
     }
 
     /**
+     * Sort a numerically indexed array of multidimensional arrays by a given key in ascending (optionally, descending) order.
+     *
+     * @param array $array (Numerically indexed array of multidimensional arrays)
+     * @param string $key (Key name to sort by in dot notation)
+     * @param bool $descending (Sort descending)
+     * @return array
+     */
+    public static function numericMultisort(array $array, string $key, bool $descending = false): array
+    {
+
+        $val = function ($item, $path) {
+
+            foreach (explode('.', $path) as $segment) {
+
+                if (!is_array($item) || !array_key_exists($segment, $item)) {
+                    return null;
+                }
+
+                $item = $item[$segment];
+
+            }
+
+            return $item;
+
+        };
+
+        usort($array, function ($a, $b) use ($val, $key, $descending) {
+
+            $val_a = $val($a, $key);
+            $val_b = $val($b, $key);
+            $comparison = strcmp((string)$val_a, (string)$val_b);
+            return $descending ? -$comparison : $comparison;
+
+        });
+
+        return $array;
+
+    }
+
+    /**
      * Rename array keys while preserving their order.
      *
      * @param array $array (Original array)
      * @param array $keys (Key/value pairs to rename)
-     *
      * @return array
      */
-
     public static function renameKeys(array $array, array $keys): array
     {
 
@@ -353,10 +368,8 @@ class Arr
      *
      * @param array $array (Original array)
      * @param array $order (Array of keys in the order to be returned)
-     *
      * @return array
      */
-
     public static function order(array $array, array $order): array
     {
         return self::only(array_replace(array_flip($order), $array), array_keys($array));
@@ -366,10 +379,8 @@ class Arr
      * Convert array into a query string.
      *
      * @param array $array (Original array)
-     *
      * @return string
      */
-
     public static function query(array $array): string
     {
         return http_build_query($array, '', '&', PHP_QUERY_RFC3986);
@@ -380,10 +391,8 @@ class Arr
      *
      * @param array $array
      * @param array $values
-     *
      * @return array
      */
-
     public static function getAnyValues(array $array, array $values): array
     {
         return array_intersect($values, Arr::dot($array));
@@ -394,10 +403,8 @@ class Arr
      *
      * @param array $array
      * @param array $values
-     *
      * @return bool
      */
-
     public static function hasAnyValues(array $array, array $values): bool
     {
         return !empty(self::getAnyValues($array, $values));
@@ -408,13 +415,42 @@ class Arr
      *
      * @param array $array
      * @param array $values
-     *
      * @return bool
      */
-
     public static function hasAllValues(array $array, array $values): bool
     {
         return count(array_intersect($values, Arr::dot($array))) == count($values);
+    }
+
+    /**
+     * Ensure a numerically indexed array of arrays has a given item based on a unique key.
+     *
+     * @param array $array
+     * @param array $item (Item to exist)
+     * @param string $unique_key (Unique array key)
+     * @return array
+     */
+    public static function ensureHas(array $array, array $item, string $unique_key): array
+    {
+
+        $item_identifier = Arr::get($item, $unique_key);
+        $exists = false;
+
+        foreach ($array as $v) {
+
+            if (Arr::get($v, $unique_key) === $item_identifier) {
+                $exists = true;
+                break;
+            }
+
+        }
+
+        if ($exists === false) {
+            $array[] = $item;
+        }
+
+        return $array;
+
     }
 
 }
