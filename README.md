@@ -39,6 +39,7 @@ composer require bayfrontmedia/php-array-helpers
 - [pluck](#pluck)
 - [forget](#forget)
 - [except](#except)
+- [exceptValues](#exceptvalues)
 - [only](#only)
 - [missing](#missing)
 - [isMissing](#ismissing)
@@ -46,6 +47,7 @@ composer require bayfrontmedia/php-array-helpers
 - [numericMultisort](#numericmultisort)
 - [renameKeys](#renamekeys)
 - [order](#order)
+- [getRandomItems](#getrandomitems)
 - [query](#query)
 - [getAnyValues](#getanyvalues)
 - [hasAnyValues](#hasanyvalues)
@@ -306,6 +308,35 @@ $array = Arr::except($array, 'active');
 
 <hr />
 
+### exceptValues
+
+**Description:**
+
+Returns the original array except given value(s).
+
+**Parameters:**
+
+- `$array` (array): Original array
+- `$values` (string|array): Values(s) to remove
+
+**Returns:**
+
+- (array)
+
+**Example:**
+
+```
+$array = [
+    'John',
+    'Jane',
+    'Bob'
+];
+
+$array = Arr::exceptValues($array, 'John');
+```
+
+<hr />
+
 ### only
 
 **Description:**
@@ -562,6 +593,38 @@ Array
     [state] => IL
     [zip] => 60007
 )
+```
+
+<hr />
+
+### getRandomItems
+
+**Description:**
+
+Get random items from array.
+
+If `$count` is greater than or equal to the number of items on the array,
+the original array is returned in random order.
+
+**Parameters:**
+
+- `$array` (array): Original array
+- `$count` (int): Number of random items to return
+
+**Returns:**
+
+- (array)
+
+**Example:**
+
+```
+$array = [
+    'John',
+    'Jane',
+    'Bob'
+];
+
+$array = Arr::getRandomItems($array, 1);
 ```
 
 <hr />

@@ -228,6 +228,18 @@ class Arr
     }
 
     /**
+     * Returns the original array except given value(s).
+     *
+     * @param array $array (Original array)
+     * @param array|string $values (Values to remove)
+     * @return array
+     */
+    public static function exceptValues(array $array, array|string $values): array
+    {
+        return array_values(array_diff($array, (array)$values));
+    }
+
+    /**
      * Returns only desired key(s) from an array.
      *
      * @param array $array (Original array)
@@ -373,6 +385,36 @@ class Arr
     public static function order(array $array, array $order): array
     {
         return self::only(array_replace(array_flip($order), $array), array_keys($array));
+    }
+
+    /**
+     * Get random items from array.
+     *
+     * If $count is greater than or equal to the number of items on the array,
+     * the original array is returned in random order.
+     *
+     * @param array $array (Original array)
+     * @param int $count (Number of random items to return)
+     * @return array
+     */
+    public static function getRandomItems(array $array, int $count): array
+    {
+
+        if (count($array) <= $count) {
+            $shuffled = $array;
+            shuffle($shuffled);
+            return $shuffled;
+        }
+
+        $keys = array_rand($array, $count);
+
+        // Ensure $keys is always an array
+        if (!is_array($keys)) {
+            $keys = [$keys];
+        }
+
+        return array_map(fn($key) => $array[$key], $keys);
+
     }
 
     /**
